@@ -6,14 +6,7 @@
 <title>MotoWorkshop V6 — ระบบจำแนกลูกค้าและซัพพลายเออร์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/html5-qrcode" defer>
-/* V7 mobile hint */
-(function(){
-  const showMobileHint=()=>document.querySelectorAll('.mobile-hint').forEach(e=>e.style.display=innerWidth<=768?'block':'none');
-  addEventListener('resize',showMobileHint); showMobileHint();
-})();
-
-</script>
+<script src="https://unpkg.com/html5-qrcode" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
 <style>
 :root{
@@ -129,86 +122,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 
 .scan-popup-info{margin:18px 0;padding:14px;background:#f7f9fb;border:1px solid var(--line);border-radius:12px;text-align:left}
 .scan-popup-info div{display:flex;justify-content:space-between;gap:15px;padding:5px 0;font-size:13px}.scan-popup-info span{color:var(--muted)}
 .scan-popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-
-
-/* V7 Mobile Responsive */
-@media (max-width: 768px) {
-  body { font-size: 14px; }
-  .app, .layout, .main, .content { min-width: 0 !important; }
-  .sidebar {
-    width: 100% !important;
-    height: auto !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000;
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    padding: 8px !important;
-    gap: 6px;
-  }
-  .sidebar .brand, .sidebar .nav-title, .sidebar .user-box { display: none !important; }
-  .sidebar nav { display: flex !important; gap: 6px; width: max-content; }
-  .sidebar nav button {
-    white-space: nowrap;
-    padding: 9px 12px !important;
-    border-radius: 9px !important;
-    font-size: 12px !important;
-  }
-  .sidebar nav button .nav-icon { margin-right: 4px; }
-  .main { width: 100% !important; margin: 0 !important; }
-  .topbar {
-    padding: 10px 14px !important;
-    gap: 8px;
-  }
-  .topbar .page-title { font-size: 18px !important; }
-  .topbar .top-actions { gap: 5px !important; }
-  .view { padding: 12px !important; }
-  .grid, .dashboard-grid, .stats-grid, .form-grid,
-  .partner-register-layout, .two-col, .three-col {
-    grid-template-columns: 1fr !important;
-  }
-  .card { border-radius: 12px !important; }
-  .card-head { padding: 14px !important; }
-  .form { padding: 14px !important; }
-  .btn { min-height: 42px; }
-  .btn-large { width: 100%; }
-  input, select, textarea { min-height: 44px; font-size: 16px !important; }
-  textarea { min-height: 80px; }
-  table { min-width: 680px; }
-  .table-wrap, .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .modal { padding: 10px !important; }
-  .modal-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    max-height: 92vh !important;
-    margin: 0 !important;
-    border-radius: 16px !important;
-  }
-  .modal-body { padding: 14px !important; }
-  .qr-stage { min-height: 250px !important; }
-  .qr-buttons { grid-template-columns: 1fr !important; }
-  .type-selector { grid-template-columns: 1fr !important; }
-  .search-row { flex-direction: column !important; align-items: stretch !important; }
-  .search-row input, .search-row select, .search-row button { width: 100% !important; }
-  .picker-row { align-items: stretch !important; flex-direction: column !important; }
-  .picker-row .btn { width: 100%; }
-  #view-scan .scan-card, #view-scan .card { width: 100% !important; }
-  #view-scan .scan-actions,
-  #view-scan .action-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* Small phone */
-@media (max-width: 420px) {
-  .sidebar nav button .nav-label { display: none !important; }
-  .sidebar nav button { padding: 10px 13px !important; font-size: 16px !important; }
-  .view { padding: 9px !important; }
-  .topbar { padding: 8px 10px !important; }
-  .topbar .page-title { font-size: 16px !important; }
-  .card-title { font-size: 17px !important; }
-}
 
 </style>
 </head>
