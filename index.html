@@ -3,10 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MotoWorkshop — ระบบจำแนกลูกค้าและซัพพลายเออร์</title>
+<title>MotoWorkshop V6 — ระบบจำแนกลูกค้าและซัพพลายเออร์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/html5-qrcode" defer></script>
+<script src="https://unpkg.com/html5-qrcode" defer>
+/* V7 mobile hint */
+(function(){
+  const showMobileHint=()=>document.querySelectorAll('.mobile-hint').forEach(e=>e.style.display=innerWidth<=768?'block':'none');
+  addEventListener('resize',showMobileHint); showMobileHint();
+})();
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
 <style>
 :root{
@@ -111,6 +118,97 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 
 .success-box{padding:12px 14px;border-radius:10px;background:var(--green2);border:1px solid #c5ebd5;color:#087a42;font-size:13px;margin-top:12px}
 @media(max-width:900px){.partner-register-layout{grid-template-columns:1fr}.qr-create-card{position:static}}
 @media(max-width:520px){.type-selector{grid-template-columns:1fr}.qr-buttons{grid-template-columns:1fr}}
+
+
+.scan-result-modal .modal-box{width:min(500px,100%);text-align:center}
+.scan-success-icon{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;margin:4px auto 12px;background:var(--green2);color:var(--green);font-size:34px;font-weight:800}
+.scan-partner-name{font-size:27px;font-weight:800;margin-top:8px;line-height:1.2}
+.scan-partner-id{font-size:15px;color:var(--muted);margin-top:5px;letter-spacing:.5px}
+.scan-type-badge{display:inline-block;margin-top:12px;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:800}
+.scan-type-badge.customer{background:var(--green2);color:#087a42}.scan-type-badge.supplier{background:var(--blue2);color:#1266c9}
+.scan-popup-info{margin:18px 0;padding:14px;background:#f7f9fb;border:1px solid var(--line);border-radius:12px;text-align:left}
+.scan-popup-info div{display:flex;justify-content:space-between;gap:15px;padding:5px 0;font-size:13px}.scan-popup-info span{color:var(--muted)}
+.scan-popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+
+
+/* V7 Mobile Responsive */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+  .app, .layout, .main, .content { min-width: 0 !important; }
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    padding: 8px !important;
+    gap: 6px;
+  }
+  .sidebar .brand, .sidebar .nav-title, .sidebar .user-box { display: none !important; }
+  .sidebar nav { display: flex !important; gap: 6px; width: max-content; }
+  .sidebar nav button {
+    white-space: nowrap;
+    padding: 9px 12px !important;
+    border-radius: 9px !important;
+    font-size: 12px !important;
+  }
+  .sidebar nav button .nav-icon { margin-right: 4px; }
+  .main { width: 100% !important; margin: 0 !important; }
+  .topbar {
+    padding: 10px 14px !important;
+    gap: 8px;
+  }
+  .topbar .page-title { font-size: 18px !important; }
+  .topbar .top-actions { gap: 5px !important; }
+  .view { padding: 12px !important; }
+  .grid, .dashboard-grid, .stats-grid, .form-grid,
+  .partner-register-layout, .two-col, .three-col {
+    grid-template-columns: 1fr !important;
+  }
+  .card { border-radius: 12px !important; }
+  .card-head { padding: 14px !important; }
+  .form { padding: 14px !important; }
+  .btn { min-height: 42px; }
+  .btn-large { width: 100%; }
+  input, select, textarea { min-height: 44px; font-size: 16px !important; }
+  textarea { min-height: 80px; }
+  table { min-width: 680px; }
+  .table-wrap, .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .modal { padding: 10px !important; }
+  .modal-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92vh !important;
+    margin: 0 !important;
+    border-radius: 16px !important;
+  }
+  .modal-body { padding: 14px !important; }
+  .qr-stage { min-height: 250px !important; }
+  .qr-buttons { grid-template-columns: 1fr !important; }
+  .type-selector { grid-template-columns: 1fr !important; }
+  .search-row { flex-direction: column !important; align-items: stretch !important; }
+  .search-row input, .search-row select, .search-row button { width: 100% !important; }
+  .picker-row { align-items: stretch !important; flex-direction: column !important; }
+  .picker-row .btn { width: 100%; }
+  #view-scan .scan-card, #view-scan .card { width: 100% !important; }
+  #view-scan .scan-actions,
+  #view-scan .action-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Small phone */
+@media (max-width: 420px) {
+  .sidebar nav button .nav-label { display: none !important; }
+  .sidebar nav button { padding: 10px 13px !important; font-size: 16px !important; }
+  .view { padding: 9px !important; }
+  .topbar { padding: 8px 10px !important; }
+  .topbar .page-title { font-size: 16px !important; }
+  .card-title { font-size: 17px !important; }
+}
 
 </style>
 </head>
@@ -347,6 +445,28 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 
   </main>
 </div>
 
+
+<div class="modal scan-result-modal" id="scanResultModal">
+  <div class="modal-box">
+    <div class="modal-head"><b>ยืนยันตัวตนจาก QR</b><button class="close" onclick="closeScanResult()">×</button></div>
+    <div class="modal-body">
+      <div class="scan-success-icon">✓</div>
+      <div style="font-size:13px;color:var(--muted)">พบ Partner ในระบบ</div>
+      <div class="scan-partner-name" id="scanPopupName">—</div>
+      <div class="scan-partner-id" id="scanPopupId">—</div>
+      <div id="scanPopupType" class="scan-type-badge customer">ลูกค้า (Customer)</div>
+      <div class="scan-popup-info">
+        <div><span>ผู้ติดต่อ</span><b id="scanPopupContact">—</b></div>
+        <div><span>เบอร์โทร</span><b id="scanPopupPhone">—</b></div>
+      </div>
+      <div class="scan-popup-actions">
+        <button class="btn" onclick="closeScanResult()">ปิด</button>
+        <button class="btn btn-primary" onclick="closeScanResult();document.getElementById('resultPanel').scrollIntoView({behavior:'smooth',block:'start'})">✓ ดำเนินการต่อ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id="modal">
   <div class="modal-box">
     <div class="modal-head"><b id="modalTitle">ลงทะเบียน Partner ใหม่</b><button class="close" id="closeModal">×</button></div>
@@ -414,6 +534,21 @@ function eventClass(t){return t==='receive'?'receive':t==='send'?'send':'product
 function setDate(){const d=new Date();document.getElementById('dateTime').value=d.toLocaleString('th-TH',{dateStyle:'short',timeStyle:'short'});document.getElementById('clock').textContent=d.toLocaleString('th-TH',{dateStyle:'short',timeStyle:'short'})}
 function renderEmpty(){document.getElementById('resultPanel').innerHTML='<div class="empty"><div style="font-size:42px">👤</div><b>ยังไม่มีข้อมูลที่สแกน</b><p>เริ่มจากสแกน QR หรือค้นหาชื่อลูกค้า / ซัพพลายเออร์</p></div>';document.getElementById('history').innerHTML='<div class="empty">ยังไม่มีประวัติสำหรับร้านนี้</div>'}
 function selectPartner(p){currentPartner=p;renderPartner();renderHistory();toast('พบข้อมูล: '+p.name)}
+function showScanResult(p){
+ document.getElementById('scanPopupName').textContent=p.name||'-';
+ document.getElementById('scanPopupId').textContent=p.id||'-';
+ const badge=document.getElementById('scanPopupType');
+ badge.textContent=typeLabel(p.type);badge.className='scan-type-badge '+(p.type==='supplier'?'supplier':'customer');
+ document.getElementById('scanPopupContact').textContent=p.contact||'-';
+ document.getElementById('scanPopupPhone').textContent=p.phone||'-';
+ document.getElementById('scanResultModal').classList.add('show');
+}
+function closeScanResult(){document.getElementById('scanResultModal').classList.remove('show')}
+function handleScannedPartner(text){
+ const p=findPartner(text)||db.partners.find(x=>x.id===text.trim());
+ if(p){selectPartner(p);showScanResult(p);return true}
+ toast('QR นี้ยังไม่พบในระบบ: '+text);return false;
+}
 function renderPartner(){
  if(!currentPartner){renderEmpty();return}
  const p=currentPartner, records=db.records.filter(r=>r.partnerId===p.id);
@@ -452,8 +587,7 @@ async function startScanner(){
  scanner=new Html5Qrcode('reader');
  try{
    await scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:230,height:230}},text=>{
-      const p=findPartner(text)||db.partners.find(x=>x.id===text.trim());
-      if(p){selectPartner(p);stopScanner()} else {toast('QR นี้ยังไม่พบในระบบ: '+text)}
+      if(handleScannedPartner(text)){stopScanner()}
    });
    toast('เปิดกล้องแล้ว — หัน QR เข้ากรอบ');
  }catch(e){toast('เปิดกล้องไม่ได้ กรุณาอนุญาตการใช้กล้องหรือใช้ค้นหาแทน');stopScanner()}
@@ -471,8 +605,7 @@ document.getElementById('qrFile').addEventListener('change',async e=>{
  if(typeof Html5Qrcode==='undefined'){toast('ตัวสแกนยังโหลดไม่เสร็จ');return}
  const temp=new Html5Qrcode('reader');
  try{
-  const txt=await temp.scanFile(f,true); const p=findPartner(txt)||db.partners.find(x=>x.id===txt.trim());
-  if(p)selectPartner(p);else toast('QR นี้ยังไม่พบในระบบ: '+txt);
+  const txt=await temp.scanFile(f,true); handleScannedPartner(txt);
  }catch(err){toast('อ่าน QR จากรูปไม่สำเร็จ')}finally{try{temp.clear()}catch(err){}e.target.value=''}
 });
 document.getElementById('searchBtn').onclick=()=>{const p=findPartner(document.getElementById('searchInput').value);p?selectPartner(p):toast('ไม่พบข้อมูล')}
@@ -718,6 +851,7 @@ document.getElementById('v3GenerateQr').onclick=()=>{
 };
 
 document.getElementById('v3DownloadQr').onclick=()=>{if(v3CreatedPartner)downloadPartnerQr(v3CreatedPartner)};
+document.getElementById('scanResultModal').addEventListener('click',e=>{if(e.target.id==='scanResultModal')closeScanResult()});
 </script>
 </body>
 </html>
